@@ -13,6 +13,7 @@ import { environment } from '../../environments/environment';
 export class ProfileComponent implements OnInit {
 
   surveyTemplates = []
+  topics = []
 
   constructor(public authTokenService: AngularTokenService,
               public authService: AuthService,
@@ -26,8 +27,15 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get(environment.token_auth_config.apiBase + 'organizations/3518/survey_templates').subscribe(data => {
-      console.log(data)
+
+    this.http.get(environment.token_auth_config.apiBase + 'organizations/3518/topics').subscribe((data: any) => {
+      console.log('Topic data: ', data)
+      this.topics = data.topics
+      console.log(this.topics)      
+    });
+
+    this.http.get(environment.token_auth_config.apiBase + 'organizations/3518/survey_templates').subscribe((data: any) => {
+      console.log('surveyTemplate data: ', data)
       this.surveyTemplates = data.survey_templates
       console.log(this.surveyTemplates)
     });

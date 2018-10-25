@@ -41,6 +41,23 @@
 </div>
 
 <div class="row">
+    <table>
+      <tr>
+        <th>Topic ID</th>
+        <th>Name</th>
+        <th>Static ID</th>
+      </tr>
+      <ng-container *ngFor="let topic of topics">
+        <tr>
+          <td>{{topic.id}}</td>
+          <td>{{topic.name}}</td>
+          <td>{{topic.static_id}}</td>
+        </tr>
+      </ng-container>
+    </table>
+</div>
+
+<div class="row">
   <div *ngFor="let st of surveyTemplates">
     <table>
       <tr>
@@ -51,21 +68,50 @@
         <td>{{st.id}}</td>
         <td colspan="4">{{st.name}}</td>
       </tr>
-      <tr>
-        <th>Template Question ID</th>
-        <th>Question ID</th>
-        <th>Alias</th>
-        <th>Kind</th>
-        <th>Title</th>
-      </tr>
       <ng-container *ngFor="let tq of st.template_questions">
+        <tr>
+          <th>Template Question ID</th>
+          <th>Question ID</th>
+          <th>Alias</th>
+          <th>Kind</th>
+          <th>Title</th>
+        </tr>
         <tr>
           <td>{{tq.id}}</td>
           <td>{{tq.question_id}}</td>
           <td>{{tq.question.alias}}</td>
           <td>{{tq.question.kind}}</td>
           <td>{{tq.question.title}}</td>
-        </tr>  
+        </tr>
+        <ng-container *ngIf="tq.question.question_options.length > 0">
+          <tr>
+            <th>Question Option ID</th>
+            <th>Name</th>
+            <th colspan="3">Position</th>
+          </tr>
+          <ng-container *ngFor="let ql of tq.question.question_options">
+            <tr>
+              <td>{{ql.id}}</td>
+              <td>{{ql.name}}</td>
+              <td colspan="3">{{ql.position}}</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="tq.question.question_labels.length > 0">
+          <tr>
+            <th>Question Label ID</th>
+            <th>Value</th>
+            <th colspan="3">Description</th>
+          </tr>
+          <ng-container *ngFor="let ql of tq.question.question_labels">
+            <tr>
+              <td>{{ql.id}}</td>
+              <td>{{ql.value}}</td>
+              <td colspan="3">{{ql.description}}</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+
       </ng-container>
     </table>
 
