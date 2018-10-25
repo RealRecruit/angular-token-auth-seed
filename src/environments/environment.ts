@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   token_auth_config: {
-    apiBase: 'http://localhost:3000'
+    // apiBase: 'https://real-recruit-sandbox.herokuapp.com/api/v1/'
+    apiBase: 'http://localhost:3000/api/v1/'
   }
 };

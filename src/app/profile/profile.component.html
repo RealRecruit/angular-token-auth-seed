@@ -39,3 +39,35 @@
 
   </div>
 </div>
+
+<div class="row">
+  <div *ngFor="let st of surveyTemplates">
+    <table>
+      <tr>
+        <th>Survey Template ID</th>
+        <th colspan="4">Survey Template Name</th>
+      </tr>
+      <tr>
+        <td>{{st.id}}</td>
+        <td colspan="4">{{st.name}}</td>
+      </tr>
+      <tr>
+        <th>Template Question ID</th>
+        <th>Question ID</th>
+        <th>Alias</th>
+        <th>Kind</th>
+        <th>Title</th>
+      </tr>
+      <ng-container *ngFor="let tq of st.template_questions">
+        <tr>
+          <td>{{tq.id}}</td>
+          <td>{{tq.question_id}}</td>
+          <td>{{tq.question.alias}}</td>
+          <td>{{tq.question.kind}}</td>
+          <td>{{tq.question.title}}</td>
+        </tr>  
+      </ng-container>
+    </table>
+
+  </div>
+</div>
